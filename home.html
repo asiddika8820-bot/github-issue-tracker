@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+<script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Outfit:wght@100..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<style>
+
+    *{
+
+   font-family: "Open Sans", sans-serif;
+    }
+</style>
+</head>
+<body class=" bg-[#64748B10] mx-20 my-4">
+
+
+    <header >
+        <div class="navbar bg-base-100 shadow-sm">
+            <img class="w-[36px] h-[37px]" src="./assets/github-logo.png" alt="">
+  <div class="flex-1">
+    
+    <a class="btn btn-ghost text-xl">GitHub Issues Tracker</a>
+  </div>
+  <div class="flex gap-2">
+    <input type="text" placeholder="Search issue" class="input input-bordered w-24 md:w-auto" />
+    <div class="Search">
+      <button class="btn btn-primary"><i class="fa-solid fa-plus"></i>New Issue</button>
+        
+      </div>
+     
+    </div>
+  </div>
+</div>
+    </header>
+
+    <section class="mx-30 my-16">
+  <div class="bg-white mx-6 my-6  px-2 py-2 rounded-lg shadow">
+    <!-- Filter Buttons -->
+    <div class="flex gap-3 mb-6">
+     <button id="all-btn" class="btn btn-dash btn-primary" onclick="showSection('word-container')">All</button>
+<button id="open-btn" class="btn btn-dash btn-primary" onclick="showSection('open-container')">Open</button>
+<button id="closed-btn" class="btn btn-dash btn-primary" onclick="showSection('close-container')">Closed</button>
+    </div>
+  </div>
+ <br>
+
+ <div class="flex items-center justify-between p-4 bg-white rounded-xl">
+
+  <!-- Left Section -->
+  <div class="flex gap-3 items-center">
+    <img class="bg-[#dbcff3] rounded-xl p-2" src="./assets/Aperture.png" alt="">
+    <div>
+      <h1 class="text-xl font-semibold">50 Issues</h1>
+      <p class="text-[#64748B] text-sm">Track and manage your issues</p>
+    </div>
+  </div>
+  <!-- Right Section -->
+  <div class="flex items-center gap-8">
+    <!-- Open -->
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-green-500"></span>
+      <span class="text-gray-700 font-medium">Open</span>
+    </div>
+    <!-- Closed -->
+    <div class="flex items-center gap-2">
+      <span class="w-3 h-3 rounded-full bg-purple-500"></span>
+      <span class="text-gray-700 font-medium">Closed</span>
+    </div>
+  </div>
+</div>
+    </section>
+    
+
+
+    <section id="word-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-16 my-16 hidden">
+     
+    </section>
+
+<!--Open section-->
+      <section id="open-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-16 my-16 hidden">
+     <p>hello open</p>
+    </section>
+
+<!--close section-->
+
+ <section id="close-container" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mx-16 my-16 hidden">
+      <p>hello close</p>
+    </section>
+
+    <script  src="script/show.js"></script>
+    <script  src="script/open.js"></script>
+    <script  src="script/close.js"></script>
+</body>
+</html>
