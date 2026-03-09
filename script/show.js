@@ -25,15 +25,13 @@ const loadLessons = () => {
 const displayALL = (issues) => {
 
     const container = document.getElementById("word-container");
-
     container.innerHTML = "";
-
     issues.forEach(issue => {
 
       
 
 
-//priority change
+//priority  status change
 let priorityClass = "";
 
 if(issue.priority === "low"){
@@ -47,17 +45,16 @@ else{
 }
 
 
-//image change
+//image status change
 
 let imageSrc = "";
-
 if(issue.status === "open"){
     imageSrc = "./assets/Open-Status.png";
 }
 else{
     imageSrc = "./assets/Closed-Status.png";
 }
-//date
+//date modify
 const date = new Date(issue.createdAt).toLocaleDateString();
 
 //border selection
@@ -70,6 +67,7 @@ if (issue.status === "open") {
 }
 
 
+//card creation
   const card = document.createElement("div");
         card.innerHTML = `
         
