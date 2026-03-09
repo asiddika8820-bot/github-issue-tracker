@@ -7,6 +7,7 @@ const loadLessons = () => {
 };
 
 
+
 /*"id": 1,
 "title": "Fix navigation menu on mobile devices",
 "description": "The navigation menu doesn't collapse properly on mobile devices. Need to fix the responsive behavior.",
@@ -25,13 +26,15 @@ const loadLessons = () => {
 const displayALL = (issues) => {
 
     const container = document.getElementById("word-container");
+
     container.innerHTML = "";
+
     issues.forEach(issue => {
 
       
 
 
-//priority  status change
+//priority change
 let priorityClass = "";
 
 if(issue.priority === "low"){
@@ -45,16 +48,17 @@ else{
 }
 
 
-//image status change
+//image change
 
 let imageSrc = "";
+
 if(issue.status === "open"){
     imageSrc = "./assets/Open-Status.png";
 }
 else{
     imageSrc = "./assets/Closed-Status.png";
 }
-//date modify
+//date
 const date = new Date(issue.createdAt).toLocaleDateString();
 
 //border selection
@@ -67,14 +71,15 @@ if (issue.status === "open") {
 }
 
 
-//card creation
+
+
   const card = document.createElement("div");
         card.innerHTML = `
         
            <div class="cardFormation h-80 w-64  bg-white px-4 py-4 rounded-md shadow-md ${borderCard}">
         <div class=" flex justify-between ">
-            <img src="${imageSrc}" alt="status">
-            <button class="${priorityClass} rounded-md px-2 py-1 text-sm"> ${issue.priority}</button>
+            <img onclick="loadWordDetail(${issue.id})" src="${imageSrc}" alt="status">
+            <button onclick="loadWordDetail(${issue.id})" class="${priorityClass} rounded-md px-2 py-1 text-sm"> ${issue.priority}</button>
         </div>
 
         <div class="space-y-4 mt-2">
@@ -100,6 +105,75 @@ if (issue.status === "open") {
     });
 };
 
+const loadWordDetail=async(id )=>{
+    const url=`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`;
+    console.log(url);
+    const res= await fetch(url);
+    const details= await res.json();
+    displayWordDetails(details.data);
+};
+
+const displayWordDetails=(issue)=>{
+    
+const date = new Date(issue.createdAt).toLocaleDateString();
+let statusText = issue.status; 
+let statusColor = statusText === "open" ? "bg-[#00A96E]" : "bg-purple-500";
+let priorityClass = "";
+
+if(issue.priority === "low"){
+    priorityClass = "bg-gray-400 text-white";
+}
+else if(issue.priority === "medium"){
+    priorityClass = "bg-yellow-100 text-yellow-600";
+}
+else{
+    priorityClass = "bg-red-100 text-red-600";
+}
+
+const detailsBox= document.getElementById("details-container");
+
+detailsBox.innerHTML=`  <div class="modal-box space-y-4">
+      <h2 class="text-xl font-bold">${issue.title}</h2>
+       <div class=" flex justify-between text-gray-400">
+        <button class="${statusColor} rounded-md px-1 py-1 w-14 h-7 text-white">${statusText}</button>
+     
+          <li> opened by ${issue.author}</li>
+          <li> date:${date} </li>
+        
+       </div>
+  
+       <p class="text-[#64748B] line-clamp-2">${issue.description}</p>
+            <div class="flex justify-between space-y-4 ">
+            <button class="bg-[#FECACA] rounded-md px-1 py-1 w-14 h-7 text-[#EF4444]"> Bug</button>
+            <button class="bg-[#FFF8DB] rounded-md px-1 py-1 w-28 h-7 text-[#D97706]"> help</button>
+        </div>
+
+
+        <div class=" flex justify-between gap-4 bg-slate-200">
+          <ul>
+            <p>Asignee</p>
+            <h2 class=" font-bold">${issue.assignee}</h2>
+          </ul>
+
+          <ul>
+            <p>
+              Priority:
+            </p>
+            <button class="rounded-md px-2 py-1 text-sm ${priorityClass} ">${issue.priority}</button>
+</ul>
+          </div>
+ <div class="modal-action">
+      <form method="dialog">
+        <!-- if there is a button in form, it will close the modal -->
+        <button class="btn btn-primary">Close</button>
+
+      </form>
+      </div>
+    </div>       `;
+document.getElementById("my_modal_5").showModal();
+}
+
+
 function showSection(id){
 
   const sections = ['word-container', 'open-container', 'close-container'];
@@ -118,5 +192,3 @@ function showSection(id){
 
   
 }
-
-
