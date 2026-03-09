@@ -1,23 +1,15 @@
 //console.log("this is home");
 
-window.onload = () => {
-  showSection("word-container"); 
+
+const manageSpinner = (status) => {
+  const spinner = document.getElementById("spin-id");
+
+  if (status) {
+    spinner.classList.remove("hidden");
+  } else {
+    spinner.classList.add("hidden");
+  }
 };
-
- const manageSpinner=(status)=>{
-if(status==true){
-    document.getElementById("spin-id").classList.remove("hidden");
-     document.getElementById("word-container").classList.add("hidden");
-    document.getElementById("open-container").classList.add("hidden");
-    document.getElementById("close-container").classList.add("hidden");
-
-}else{
-    document.getElementById("spin-id").classList.add("hidden");
-     document.getElementById("word-container").classList.remove("hidden");
-    document.getElementById("open-container").classList.remove("hidden");
-    document.getElementById("close-container").classList.remove("hidden");
-}
- }
 //this is open section
 const openData = () => {
     manageSpinner(true);
