@@ -3,9 +3,13 @@
 
 //this is open section
 const openData = () => {
-    fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
+      fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
         .then(res => res.json())
-        .then(data => displayOpen(data.data));
+        .then(data => {
+            const openIssues = data.data.filter(issue => issue.status === "open");
+            displayOpen(openIssues);
+            issueCount(openIssues); 
+        });
 };
 const displayOpen = (issues) => {
 
@@ -108,7 +112,10 @@ if (issue.status === "open") {
 const loadLessons = () => {
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
         .then(res => res.json())
-        .then(data => displayALL(data.data));
+        .then(data => {
+            displayALL(data.data);      
+            issueCount(data.data);     
+        });
 };
 const displayALL = (issues) => {
 
@@ -199,7 +206,11 @@ if (issue.status === "open") {
 const closeData = () => {
     fetch("https://phi-lab-server.vercel.app/api/v1/lab/issues")
         .then(res => res.json())
-        .then(data => displayClose(data.data));
+        .then(data => {
+            const closeIssues = data.data.filter(issue => issue.status === "closed");
+            displayClose(closeIssues);
+            issueCount(closeIssues);
+        });
 };
 const displayClose = (issues) => {
 
@@ -371,3 +382,8 @@ function showSection(id){
 
   
 }
+
+const issueCount = (issues) => {
+  const count = document.getElementById("issue-count");
+  count.textContent = `${issues.length} Issues`;
+};
