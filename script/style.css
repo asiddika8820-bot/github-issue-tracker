@@ -1,0 +1,13 @@
+.purple-btn.active{
+
+     background:#4A00FF;
+  color:white;
+}
+
+.purple-btn{
+
+    padding:8px 16px;
+  border-radius:6px;
+  background:#f3f4f6;
+  cursor:pointer;
+}

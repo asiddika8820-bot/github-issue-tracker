@@ -397,8 +397,22 @@ function showSection(id){
 
   
 }
-
+//issue count
 const issueCount = (issues) => {
   const count = document.getElementById("issue-count");
   count.textContent = `${issues.length} Issues`;
+};
+//active count
+function setActive(button){
+  const buttons = document.querySelectorAll(".purple-btn");
+
+  buttons.forEach(btn => btn.classList.remove("active")); 
+  button.classList.add("active"); 
+}
+
+// All issues load
+
+window.onload = () => {
+  showSection('word-container');
+  setActive(document.getElementById('all-btn'));
 };
